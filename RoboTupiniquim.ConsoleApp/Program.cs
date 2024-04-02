@@ -16,65 +16,68 @@
             {
                 char coordenadaAtual = coordenadas[comando];
 
-                #region coordenada para esquerda
+
                 if (coordenadaAtual == 'E')
-                {
-                    if (direcao == 'N')
-                        direcao = 'O';
-                    
-                    else if (direcao == 'O')
-                        direcao = 'S';
-                   
-                    else if (direcao == 'S')
-                        direcao = 'L';
-                   
-                    else if (direcao == 'L')
-                        direcao = 'N';
+                    direcao = VirarEsquerda(direcao);
 
-                }
-#endregion
-
-
-                #region coordenada para direira
                 if (coordenadaAtual == 'D')
-                {
-                    if (direcao == 'N')
-                        direcao = 'L';
-                   
-                    else if (direcao == 'L')
-                        direcao = 'S';
-                   
-                    else if (direcao == 'S')
-                        direcao = 'O';
-                  
-                    else if (direcao == 'O')
-                        direcao = 'N';
-                }
-                #endregion
+                    direcao = VirarDireita(direcao);
 
-                #region coordenada para andar
-                else if(coordenadaAtual=='M')
-                {
-                    if (direcao == 'N')
-                        posicaoY++;
-
-                    else if (direcao =='S')
-                        posicaoY--;
-
-                    else if (direcao =='O')
-                        posicaoX--;
-
-                    else if(direcao =='L')
-                        posicaoX++;
-                }
-
-                #endregion
+                else if (coordenadaAtual == 'M')
+                    Andar(ref posicaoX, ref posicaoY, direcao);
 
             }
 
             Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
 
             Console.ReadLine();
+        }
+
+        private static void Andar(ref int posicaoX, ref int posicaoY, char direcao)
+        {
+            if (direcao == 'N')
+                posicaoY++;
+
+            else if (direcao == 'S')
+                posicaoY--;
+
+            else if (direcao == 'O')
+                posicaoX--;
+
+            else if (direcao == 'L')
+                posicaoX++;
+        }
+
+        private static char VirarDireita(char direcao)
+        {
+            if (direcao == 'N')
+                direcao = 'L';
+
+            else if (direcao == 'L')
+                direcao = 'S';
+
+            else if (direcao == 'S')
+                direcao = 'O';
+
+            else if (direcao == 'O')
+                direcao = 'N';
+            return direcao;
+        }
+
+        private static char VirarEsquerda(char direcao)
+        {
+            if (direcao == 'N')
+                direcao = 'O';
+
+            else if (direcao == 'O')
+                direcao = 'S';
+
+            else if (direcao == 'S')
+                direcao = 'L';
+
+            else if (direcao == 'L')
+                direcao = 'N';
+            return direcao;
         }
     }
 }
