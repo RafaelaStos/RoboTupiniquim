@@ -4,17 +4,60 @@
     {
         static void Main(string[] args)
         {
-            int posicaoX = 1;
-            int posicaoY = 2;
-            char direcao = 'N';
+            PrimeiroRobo();
+            SegundoRobo();
+        }
 
-            string coordenadaInicial = "EMEMEMEMM";
+        private static void SegundoRobo()
+        {
+            Console.WriteLine("Informe a posição do robo em X: ");
+            int posicao2X = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a posição do robo em Y: ");
 
-            char[] coordenadas = coordenadaInicial.ToCharArray();
+            int posicao2Y = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a direção do robo: ");
+            char direcao2 = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("Informe os comandos para exploração: ");
+            string coordenadaInicial2 = Console.ReadLine();
 
-            for (int comando = 0; comando < coordenadas.Length; comando++)
+            char[] coordenadas2 = coordenadaInicial2.ToCharArray();
+
+            for (int comando = 0; comando < coordenadas2.Length; comando++)
             {
-                char coordenadaAtual = coordenadas[comando];
+                char coordenadaAtual = coordenadas2[comando];
+
+
+                if (coordenadaAtual == 'E')
+                    direcao2 = VirarEsquerda(direcao2);
+
+                if (coordenadaAtual == 'D')
+                    direcao2 = VirarDireita(direcao2);
+
+                else if (coordenadaAtual == 'M')
+                    Andar(ref posicao2X, ref posicao2Y, direcao2);
+
+            }
+
+            Console.WriteLine($"{posicao2X} {posicao2Y} {direcao2}");
+            Console.ReadLine();
+        }
+
+        private static void PrimeiroRobo()
+        {
+            Console.WriteLine("Informe a posição do robo em X: ");
+            int posicaoX = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a posição do robo em Y: ");
+            int posicaoY = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a direção do robo: ");
+            char direcao = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("Informe os comandos para exploração: ");
+            string coordenadaInicial = Console.ReadLine();
+
+            char[] coordenadas1 = coordenadaInicial.ToCharArray();
+
+            for (int comando = 0; comando < coordenadas1.Length; comando++)
+            {
+                char coordenadaAtual = coordenadas1[comando];
 
 
                 if (coordenadaAtual == 'E')
@@ -29,8 +72,6 @@
             }
 
             Console.WriteLine($"{posicaoX} {posicaoY} {direcao}");
-
-            Console.ReadLine();
         }
 
         private static void Andar(ref int posicaoX, ref int posicaoY, char direcao)
@@ -81,3 +122,4 @@
         }
     }
 }
+    
